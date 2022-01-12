@@ -1,7 +1,4 @@
 from os import system
-import data_collection
-import result
-import stats
 
 class Menu:
 
@@ -45,7 +42,7 @@ class Menu:
 
 	def verif_nmbr(self, uinput, rule, end):
 		if rule == "int":
-			if uinput.isdigit():
+			if ui-nput.isdigit():
 				if int(uinput) <= end:
 					return True
 		else:
@@ -60,23 +57,3 @@ class Menu:
 			print(self.CYAN + str(i) + " - " + self.GREEN + str(result))
 			i += 1
 		input("Press enter to continue...")
-
-menu = Menu()
-
-choices = ['Print all data', 'Print top numbers', 'Scan for results']#, 'Scan for new results', ''
-while 1:
-	user_choice = menu.print_menu("Type the row # to choose: " ,choices)
-
-	if user_choice == 1:
-		menu.print_result("Winning combo list: ", stats.db.fetch_all_winning_combo())
-
-	if user_choice == 2:
-		order_choice = menu.print_menu("Choose an order: ", ['Ascending order', 'Descending order'])
-		print_list = []
-		for result in stats.get_top_numbers(order_choice):
-			print_list.append('Number ' + str(result[0] + 1) + ' - ' + str(result[1]) + ' times.')
-		menu.print_result("Top numbers: ", print_list)
-
-	if user_choice == 3:
-		
-		data_collection.scan()
