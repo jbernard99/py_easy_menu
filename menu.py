@@ -15,17 +15,23 @@ class Menu:
 			'unederline': '\033[4m'
 		}
 
+	def set_header(self, header):
+		self.header = header
+
+	def set_footer(self, footer):
+		self.footer = footer
+
 	def clear(self):
-		 if name == 'nt':
-		 	system('cls')
-		 else:
-		 	system('clear')
+		if name == 'nt':
+			system('cls')
+		else:
+			system('clear')
 
 	def print_error(self, error):
 		self.clear()
 		print(self.colors['bold'] + self.colors['red'] + "ERROR: " + self.colors['endc'] + error)
 
-	def print_menu(self, txt, choice_list=["\n"]):
+	def print_menu(self, txt, type, choice_list=["\n"]):
 		self.clear()
 		print(self.colors['cyan'] + txt + "\n\n")
 		i = 1
@@ -33,26 +39,43 @@ class Menu:
 			print(self.colors['cyan'] + str(i) + " - " + self.colors['green'] + choice)
 			i += 1
 		print("\n\n")
-		choice = self.get_input("int", end=len(choice_list))
+		choice = self.get_input(type, end=len(choice_list))
 		return choice
 
-	def get_input(self, rule , end=0):
-		uinput = input(" : ")
-		if rule == "int":
-			if self.verif_nmbr(uinput, rule, end):
-				return int(uinput)
-			else:
-				self.print_error("Wrong input!")
-				return False
+	def print_transition(self, txt):
+		self.clear()
+		print(f"\n\n\n{txt}\n")
+		input("Press enter . . .")
 
-	def verif_nmbr(self, uinput, rule, end):
-		if rule == "int":
-			if ui-nput.isdigit():
-				if int(uinput) <= end:
-					return True
+	def get_input(self, rule, end=0):
+		uinput = input(" : ")
+		if rule == "int" and self.verif_int_input(uinput, end):
+			return int(uinput)
+		elif rule == "str" and self.verif_str_input(uinput):
+			return uinput
+		elif rule == "float" and self.verif_float_input(uinput):
+			return float(uinput)
 		else:
 			self.print_error("Wrong input!")
-			return False
+
+	def verif_int_input(self, uinput, end):
+		if uinput.isdigit():
+			if int(uinput) <= end:
+				return True
+		return False
+
+	def verif_str_input(self, uinput):
+		if uinput.isalnum():
+			return True
+		return False
+
+	def verif_float_input(self, uinput):
+		if uinput.isnumeric():
+			return True
+		return False
+
+"""
+Goes with other project
 
 	def print_result(self, result_title, result_list):
 		self.clear()
@@ -62,3 +85,4 @@ class Menu:
 			print(self.colors['cyan'] + str(i) + " - " + self.colors['green'] + str(result))
 			i += 1
 		input("Press enter to continue...")
+"""
