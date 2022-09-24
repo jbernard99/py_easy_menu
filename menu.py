@@ -33,18 +33,22 @@ class Menu:
 
 	def print_menu(self, txt, type, choice_list=["\n"]):
 		self.clear()
+		print(self.header)
 		print(self.colors['cyan'] + txt + "\n\n")
 		i = 1
 		for choice in choice_list:
 			print(self.colors['cyan'] + str(i) + " - " + self.colors['green'] + choice)
 			i += 1
 		print("\n\n")
+		print(self.footer)
 		choice = self.get_input(type, end=len(choice_list))
 		return choice
 
 	def print_transition(self, txt):
 		self.clear()
+		print(self.header)
 		print(f"\n\n\n{txt}\n")
+		print(self.footer)
 		input("Press enter . . .")
 
 	def get_input(self, rule, end=0):
