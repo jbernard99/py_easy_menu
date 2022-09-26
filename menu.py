@@ -31,13 +31,13 @@ class Menu:
 		self.clear()
 		print(self.colors['bold'] + self.colors['red'] + "ERROR: " + self.colors['endc'] + error)
 
-	def print_menu(self, txt, type, choice_list=["\n"]):
+	def print_menu(self, txt, type, choice_list=[]):
 		self.clear()
 		print(self.header)
 		print(self.colors['cyan'] + txt + "\n\n")
 		i = 1
 		for choice in choice_list:
-			print(self.colors['cyan'] + str(i) + " - " + self.colors['green'] + choice)
+			print(self.colors['cyan'] + str(i) + " - " + self.colors['green'] + str(choice))
 			i += 1
 		print("\n\n")
 		print(self.footer)
@@ -77,16 +77,3 @@ class Menu:
 		if uinput.isnumeric():
 			return True
 		return False
-
-"""
-Goes with other project
-
-	def print_result(self, result_title, result_list):
-		self.clear()
-		print(self.colors['cyan'] + "Results for" + self.colors['bold'] + result_title + "\n")
-		i = 1
-		for result in result_list:
-			print(self.colors['cyan'] + str(i) + " - " + self.colors['green'] + str(result))
-			i += 1
-		input("Press enter to continue...")
-"""
