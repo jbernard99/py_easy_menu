@@ -8,7 +8,7 @@ from menu import Menu
 ```
 
 ### Usage:
-```
+```python
 from menu import Menu
 
 menu = Menu()
